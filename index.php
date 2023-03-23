@@ -80,8 +80,6 @@ error_reporting(0);
 
         $total = $_POST['total'];
 
-        // $gastos = $_POST['gastos'];
-
         $sql = "INSERT INTO $mes$semana (fecha, efectivo,tarjeta,gasolina, total ) 
     VALUES ('$fecha','$efectivo','$tarjeta','$gasolina','$total')";
         $query = $conn->query($sql);
@@ -92,8 +90,7 @@ error_reporting(0);
 
     $crear = "";
 
-    // if(isset($_REQUEST['meses']))$mes =$_POST['meses'];
-    // if(isset($_POST['dic']))$dic =$_POST['dic'];
+
     if (isset($_POST['crear'])) $crear = $_POST['crear'];
 
     if ($crear) {
@@ -111,7 +108,7 @@ error_reporting(0);
 
 
         <form action="index.php" class="row ">
-            <div class="col-22 ">
+            <div class="col">
 
                 <span class="input-group-text me-2 mt-2 bg-info text-white w-100 rounded-3" id="inputGroup-sizing-default">MES
                     <select name="meses" class="form-select  ms-2" id="meses">
@@ -172,7 +169,7 @@ error_reporting(0);
 
             <form name="formulario" class="p-3" action="<?php echo $_SERVER['PHP_SELF']; ?>?meses=<?php echo $mes . $semana ?>" method="post">
 
-                <div class="col-22 ">
+                <div class="col">
 
                     <label class=" p-2 ms-1">MES</label>
                     <select name="meses" class="form-select  ms-2" id="meses1">
@@ -249,8 +246,7 @@ error_reporting(0);
                 $sumar_tarjeta = 0;
                 $sumar_gasolina = 0;
                 $sumar_caja = 0;
-                $beneficio = 0;
-                // $ingresar = 0;
+                $beneficio = 0;          
                 // $propinas = 0;
 
                 // var_dump($mes);
@@ -343,14 +339,13 @@ error_reporting(0);
                 $gasolinaTotal = $_POST['totalGasolina'];
 
                 $totalMes = $_POST['totalMes'];
-
-                // $gastos = $_POST['gastos'];
+              
 
                 $sql = "INSERT INTO $mes (fecha, efectivo,tarjeta,gasolina, total ) 
-VALUES ('$fechaMes','$efectivoTotal','$tarjetaTotal','$gasolinaTotal','$totalMes')";
+                        VALUES ('$fechaMes','$efectivoTotal','$tarjetaTotal','$gasolinaTotal','$totalMes')";
                 $query = $conn->query($sql);
 
-                var_dump($sql);
+                //var_dump($sql);
             }
             ?>
 
@@ -414,21 +409,15 @@ VALUES ('$fechaMes','$efectivoTotal','$tarjetaTotal','$gasolinaTotal','$totalMes
                             <a href="totalMes.php?mes=<?php echo $mes ?>&semana=<?php echo $semana ?>"><input class="btn btn-primary rounded-3 ms-2 mt-3 border border-5 border-info" type="button" value="TOTAL MES"></a>
             </div>
 
-                <!-- FIN DE FORMULARIOS NUEVOS MESES -->
+                
                 <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
                 <script>
-                    let dias_semanas = ["DOMINGO", "LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADO"];
-                    // let mes_anio = ['ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO', 'JULIO', 'AGOSTO', 'SEPTIEMBRE', 'OCTUBRE', 'NOVIEMBRE', 'DICIEMBRE'];
-
-                    // crea un nuevo objeto `Date`
-                    var today = new Date();
-                    // `getDate()` devuelve el día del mes (del 1 al 31)
+                    let dias_semanas = ["DOMINGO", "LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADO"]; 
+                    
+                    var today = new Date();                    
                     var day = today.getDate();
-                    // `getMonth()` devuelve el mes (de 0 a 11)
-                    var month = today.getMonth() + 1;
-                    // `getFullYear()` devuelve el año completo
-                    var year = today.getFullYear();
-                    //alert(dias_semanas);
+                    var month = today.getMonth() + 1;                    
+                    var year = today.getFullYear();                    
                     document.getElementById('fecha').value = dias_semanas[today.getDay()] + ' ' + day + '/' + month + '/' + year;
                     document.getElementById('fechaMes').value = dias_semanas[today.getDay()] + ' ' + day + '/' + month + '/' + year;
 
@@ -438,9 +427,9 @@ VALUES ('$fechaMes','$efectivoTotal','$tarjetaTotal','$gasolinaTotal','$totalMes
                     document.getElementById('totalEfectivo').value = "<?php echo $sumar_efectivo ?>";
                     document.getElementById('totalTarjeta').value = "<?php echo $sumar_tarjeta ?>";
                     document.getElementById('totalGasolina').value = "<?php echo $sumar_gasolina ?>";
-                    document.getElementById('meses1').value = "marzo";
-                    document.getElementById('semanas1').value = "3";
-                    // document.getElementById('fecha').value = "MARTES 21/3/2023";
+                   // document.getElementById('meses1').value = "marzo";
+                   // document.getElementById('semanas1').value = "3";
+                    
                 </script>
 
 </body>
